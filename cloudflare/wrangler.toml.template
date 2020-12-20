@@ -1,0 +1,9 @@
+name = "worker"
+type = "webpack"
+account_id = "$CLOUDFLARE_ACCOUNT_ID"
+workers_dev = true
+route = ""
+
+[env.production]
+zone_id = "$CLOUDFLARE_ZONE_ID"
+routes = $CLOUDFLARE_PRODUCTION_ROUTE
