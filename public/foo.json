@@ -1,3 +1,6 @@
 {
-  "data": "Something"
+  "data": {
+    "1": "Foo",
+    "2": "Bar"
+  }
 }

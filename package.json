@@ -20,7 +20,8 @@
     "react-static-plugin-sitemap": "^7.2.0",
     "react-static-plugin-source-filesystem": "^7.2.0",
     "react-static-plugin-typescript": "^7.2.0",
-    "swr": "^0.3.10"
+    "swr": "^0.3.10",
+    "ui-box": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^12.7.2",

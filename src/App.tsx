@@ -1,31 +1,26 @@
 import React from 'react'
 import { Root, Routes, addPrefetchExcludes } from 'react-static'
 import { Link, Router } from '@reach/router'
-import FancyDiv from 'components/FancyDiv'
-import Dynamic from 'containers/Dynamic'
-import './app.css'
+import MyPage from 'containers/MyPage'
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['dynamic'])
+addPrefetchExcludes(['mypage'])
 
 function App() {
   return (
     <Root>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/dynamic">Dynamic</Link>
+        <Link to="/mypage/1">My page1</Link>
+        <Link to="/mypage/2">mypages 2</Link>
       </nav>
       <div className="content">
-        <FancyDiv>
-          <React.Suspense fallback={<em>Loading...</em>}>
-            <Router>
-              <Dynamic path="dynamic" />
-              <Routes path="*" />
-            </Router>
-          </React.Suspense>
-        </FancyDiv>
+        <React.Suspense fallback={<em>Loading...</em>}>
+          <Router>
+            <MyPage path="/mypage/:pageId" />
+            <Routes path="*" />
+          </Router>
+        </React.Suspense>
       </div>
     </Root>
   )

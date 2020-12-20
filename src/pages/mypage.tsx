@@ -1,14 +1,8 @@
 import React from 'react'
-import useSWR from 'swr'
+import MyPage from 'containers/MyPage'
+
+const isServer = typeof window === 'undefined'
 
 export default () => {
-  const { data }: { data?: { data: string }} = useSWR('data', () => fetch('/foo.json').then((res) => res.json()))
-
-  if (!data) return <div>Loading</div>
-
-  return (
-    <div>
-      {data.data}
-    </div>
-  )
+  return <MyPage path={isServer ? '/mypage' : new URL(window.location.href).pathname} />
 }

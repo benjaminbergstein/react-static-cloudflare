@@ -1,7 +1,7 @@
 import environment from './env'
 
 const routes = [
-  /\/dynamic/
+  [/\/mypage/, "/mypage/index.html"],
 ]
 
 const {
@@ -13,13 +13,6 @@ const {
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
-
-// const DynamicRoute = /^(\/.+)\/:/
-// const RouteLookup = routes.filter((rr) => DynamicRoute.test(rr))
-//   .map((rr) => {
-//     const match = rr.match(DynamicRoute)[1]
-//     return [new RegExp(match), match]
-//   })
 
 /**
  * Respond with hello worker text
@@ -46,12 +39,12 @@ async function handleRequest(request) {
     url.protocol = 'http'
 
     if (!isAsset && originalPath !== "/") {
-      const routeMatch = routes.find((re) => {
+      const routeMatch = routes.find(([re]) => {
         return re.test(url.pathname)
       })
 
       if (routeMatch) {
-        url.pathname = "/"
+        url.pathname = routeMatch[1]
       }
     }
 

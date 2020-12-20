@@ -21,3 +21,4 @@ worker/routesData.js
 yarn-error.log
 dist
 artifacts
+tmp
