@@ -1,8 +1,5 @@
 import environment from './env'
-
-const routes = [
-  [/\/mypage/, "/mypage/index.html"],
-]
+import getRoutes from '../getRoutes'
 
 const {
   Bucket,
@@ -20,11 +17,17 @@ addEventListener('fetch', event => {
  */
 async function handleRequest(request) {
   try {
+    const routesConfig = await getRoutes()
+    const routes = routesConfig.map((r) => {
+      const { path } = r
+      return [new RegExp(`/${path}`), `/${path}/index.html`]
+    })
+
     const url = new URL(request.url)
     const isAsset = /static/.test(url.pathname)
     const originalPath = url.pathname
 
-    if (!/^www\./.test(url.host)) {
+    if (Env === 'production' && !/^www\./.test(url.host)) {
       url.protocol = "https:"
       url.host = `www.${url.host}`
       return Response.redirect(url.toString(), 301)
@@ -60,6 +63,6 @@ async function handleRequest(request) {
 
     return response
   } catch (e) {
-    return new Response("An error occurred")
+    return new Response("An unknown error occurred")
   }
 }

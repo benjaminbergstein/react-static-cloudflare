@@ -6,4 +6,4 @@ route = ""
 
 [env.production]
 zone_id = "$CLOUDFLARE_ZONE_ID"
-routes = $CLOUDFLARE_PRODUCTION_ROUTE
+routes = ["$DOMAIN/", "*.$DOMAIN", "*.$DOMAIN/*","*$DOMAIN/*"]

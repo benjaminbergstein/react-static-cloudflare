@@ -22,3 +22,4 @@ yarn-error.log
 dist
 artifacts
 tmp
+worker/env.js

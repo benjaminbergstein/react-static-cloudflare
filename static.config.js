@@ -1,14 +1,9 @@
-import axios from 'axios'
 import path from 'path'
-// import { Post } from './types'
-
-// Typescript support in static.config.js is not yet supported, but is coming in a future update!
+import getRoutes from './getRoutes'
 
 export default {
   entry: path.join(__dirname, 'src', 'index.tsx'),
-  getRoutes: async () => {
-    return []
-  },
+  getRoutes,
   plugins: [
     'react-static-plugin-typescript',
     'react-static-plugin-preact',
