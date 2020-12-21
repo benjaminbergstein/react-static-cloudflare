@@ -17,10 +17,13 @@ const MyPage: FC<Props> = () => {
   const pageId = params?.pageId
   const { data } = useSWR(['data', pageId], () => fetch('/foo.json').then((res) => res.json()))
 
+  const pageData = data?.data[pageId]
+
   return (
-    <Box justifyContent="space-between" display="flex" flexDirection="row" width={300} height="200px">
-      <Box>My page! {pageId}</Box>
-      {data && pageId && <Box>{data.data[pageId] || "Not found"}</Box>}
+    <Box display="flex" flexDirection="column">
+      <Box>This is a page with ID &quot;{pageId}&quot;</Box>
+      {data && pageData && <Box marginTop={20}>Data associated with this page: {pageData}</Box>}
+      {data && !pageData && <Box marginTop={20}>This page has no data associated with it.</Box>}
       {!(data && pageId) && <Loading />}
     </Box>
   )
