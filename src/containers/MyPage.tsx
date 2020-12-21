@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import useSWR from 'swr'
 import Box from 'ui-box'
+import Loading from 'components/Loading'
 import { useParams } from "@reach/router"
 
 interface Props {
@@ -20,7 +21,7 @@ const MyPage: FC<Props> = () => {
     <Box justifyContent="space-between" display="flex" flexDirection="row" width={300} height="200px">
       <Box>My page! {pageId}</Box>
       {data && pageId && <Box>{data.data[pageId] || "Not found"}</Box>}
-      {!(data && pageId) && <Box>Loading...</Box>}
+      {!(data && pageId) && <Loading />}
     </Box>
   )
 }
